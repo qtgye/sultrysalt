@@ -40,6 +40,7 @@ gulp.task('default', async () => {
 		.replace(/\{\{body\}\}/g, body);
 
 		fs.outputFileSync('./dist/index.html', template);
+		fs.outputFileSync('./index.html', template);
 
 		if ( browserSync.initialized ) {
 			browserSync.reload();
