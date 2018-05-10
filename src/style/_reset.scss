@@ -1,0 +1,12 @@
+* {
+	margin: 0;
+	padding: 0;
+	@include omnes-regular;
+}
+
+button {
+	-webkit-appearance: none;
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+}

@@ -1,0 +1,187 @@
+@import "fonts";
+@import "typography";
+@import "reset";
+@import "colors";
+
+body {
+	@include omnes-regular;
+}
+
+#main {
+	position: relative;
+}
+
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
+
+	&__brand {
+		display: block;
+		width: 97px;
+		margin-left: 42px;
+		margin-top: 17px;
+	}
+
+	&__social {
+		display: block;
+		width: 36px;
+		height: 36px;
+		margin-top: 19px;
+		margin-right: 28px;
+		border: 0;
+		background-color: transparent;
+		cursor: pointer;
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+
+.hero {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+
+	&__content {
+		position: relative;
+		z-index: 5;
+	}
+
+	&__titles {
+		width: 300px;
+		padding-top: 225px;
+		padding-left: 108px;
+		@include omnes-medium;
+	}
+
+	&__title {
+		display: table;
+		font-size: 62px;
+		line-height: 64px;
+		letter-spacing: .1px;
+		text-decoration: none;
+		color: $white;
+		position: relative;
+		overflow: hidden;
+		padding-bottom: 20px;
+		transition: all .3s;
+
+		& + & {
+			margin-top: 30px;
+		}
+
+		&__bar {
+			content: '';
+			display: block;
+			width: percentage(197/300);
+			height: 4px;
+			position: absolute;
+			bottom: 0;
+			transition: all .3s;
+			border-radius: 3px;
+			overflow: hidden;
+			background-color: rgba(0,0,0,0);
+		}
+
+		&__progress {
+			display: block;
+			width: 100%;
+			height: 100%;
+			transition: all .3s;
+			background-color: $white;
+			border-radius: 3px;
+			transform: translateX(-100%) translateX(24px);
+		}
+
+		// Active title state
+		&.active {
+			color: $yellow;
+
+			.hero__title__bar {
+				background-color: $transparent-gray;
+			}
+
+			.hero__title__progress {
+				background-color: $yellow;
+				transform: translateX(-100%);
+			}
+		}
+	}
+
+	&__copy {
+		position: absolute;
+		top: 245px;
+		right: 44px;
+
+		&__heading {
+			@include omnes-regular;
+			font-size: 24px;
+			line-height: 32px;
+			letter-spacing: .1px;
+			color: $yellow;
+		}
+
+		&__body {
+			@include omnes-regular;
+			width: 227px;
+			font-size: 16px;
+			line-height: 21px;
+			letter-spacing: .06px;
+			color: $white;
+		}
+	}
+
+	&__cta {
+		position: absolute;
+		top: 500px;
+		right: 340px;
+		text-align: center;
+
+		&__button {
+			display: block;
+			width: 43px;
+			height: 43px;
+			margin: auto;
+
+			svg {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		&__text {
+			@include omnes-regular;
+			display: block;
+			color: $white;
+			font-size: 14px;
+			line-height: 17px;
+			letter-spacing: .88px;
+			width: 93px;
+			margin-top: 12px;
+		}
+	}
+
+	&__video {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		pointer-events: none;
+
+		#hero__video__player {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
