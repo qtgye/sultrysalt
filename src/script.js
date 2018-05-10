@@ -23,7 +23,6 @@ vendorScripts.forEach(({src, onload}) => {
 	if ( !src ) return;
 	script = document.createElement('script');
 	script.type = 'text/javascript';
-	script.async = true;
 	script.onload = () => {
 		script.remove();
 		if ( typeof onload === 'function' ) onload();
