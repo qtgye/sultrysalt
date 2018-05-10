@@ -321,7 +321,7 @@ function onTimeUpdate () {
 }
 
 function activateItem( itemIndex ) {
-	if ( itemIndex === activeItem ) return;
+	if ( itemIndex === activeItem || !$titles ) return;
 
 	$titles.filter('.active')
 		// Remove active class
