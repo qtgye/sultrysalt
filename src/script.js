@@ -72,7 +72,7 @@ function documentReady () {
 
 
 function onYouTubeIframeAPIReady() {
-	if ( $('hero__video__player').length ) {
+	if ( $('#hero__video__player').length ) {
 		player = new YT.Player('hero__video__player', {
 			playerVars: {
 				autoplay: 1,
@@ -96,8 +96,6 @@ function onPlayerReady() {
 }
 
 function onTimeUpdate () {
-
-	console.log('timeupdate');
 
 	if (player) {
 		currentTime = player.getCurrentTime();
