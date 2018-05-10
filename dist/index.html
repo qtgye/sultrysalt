@@ -282,14 +282,13 @@ function documentReady () {
 
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('hero__video__player', {
-		videoId: VIDEO_ID,
 		playerVars: {
 			autoplay: 1,
 			loop: 1,
 			controls: 0,
 			enablejsapi: 1,
 			modestbranding: 1,
-			showinfo: 1,
+			showinfo: 0,
 		},
 		events: {
 			'onReady': onPlayerReady,
@@ -298,6 +297,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady() {
+	player.loadVideoById({ videoId: VIDEO_ID });
 	duration = player.getDuration();
 	playbackInterval = setInterval(onTimeUpdate, 100);
 }
