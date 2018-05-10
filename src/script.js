@@ -42,6 +42,7 @@ vendorScripts.forEach(({src, onload}) => {
  */
 
 let $titles;
+let $video;
 
 let player;
 let duration;
@@ -60,25 +61,32 @@ const segments = [
 
 function documentReady () {
 	$titles = $('.hero__title');
+	$video = $('#hero__video__media');
+
+	if ( $video.length ) {
+		bindVideoTimeUpdate();
+	}
 
 	bindTitleClick();
 }
 
 
 function onYouTubeIframeAPIReady() {
-	player = new YT.Player('hero__video__player', {
-		playerVars: {
-			autoplay: 1,
-			loop: 1,
-			controls: 0,
-			enablejsapi: 1,
-			modestbranding: 1,
-			showinfo: 0,
-		},
-		events: {
-			'onReady': onPlayerReady,
-		}
-	});
+	if ( $('hero__video__player').length ) {
+		player = new YT.Player('hero__video__player', {
+			playerVars: {
+				autoplay: 1,
+				loop: 1,
+				controls: 0,
+				enablejsapi: 1,
+				modestbranding: 1,
+				showinfo: 0,
+			},
+			events: {
+				'onReady': onPlayerReady,
+			}
+		});
+	}
 }
 
 function onPlayerReady() {
@@ -88,7 +96,16 @@ function onPlayerReady() {
 }
 
 function onTimeUpdate () {
-	currentTime = player.getCurrentTime();
+
+	console.log('timeupdate');
+
+	if (player) {
+		currentTime = player.getCurrentTime();
+	}
+	else if ( $video.length ) {
+		currentTime = $video[0].currentTime;
+	}
+
 
 	switch( true ) {
 		case (currentTime >= segments[2]):
@@ -134,10 +151,19 @@ function updateProgessBar() {
 
 }
 
+function bindVideoTimeUpdate() {
+	$video.on('timeupdate', onTimeUpdate);
+}
+
 function bindTitleClick() {
 	$titles.each(function (index) {
 		$(this).click(function () {
-			player.seekTo(segments[index]);
+			if ($('iframe').length) {
+				player.seekTo(segments[index]);
+			}
+			else if ($video.length) {
+				$video[0].currentTime = segments[index];
+			}
 		});
 	});
 }
