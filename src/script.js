@@ -60,6 +60,8 @@ const segments = [
 
 function documentReady () {
 	$titles = $('.hero__title');
+
+	bindTitleClick();
 }
 
 
@@ -84,8 +86,6 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady() {
 	duration = player.getDuration();
 	playbackInterval = setInterval(onTimeUpdate, 100);
-
-	bindTitleClick();
 }
 
 function onTimeUpdate () {
