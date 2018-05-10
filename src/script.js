@@ -71,8 +71,10 @@ function documentReady () {
 
 
 function onYouTubeIframeAPIReady() {
-	if ( $('#hero__video__player').length ) {
-		player = new YT.Player('hero__video__player', {
+	let _player = document.querySelector('#hero__video__player');
+	if ( _player ) {
+		player = new YT.Player(_player.id, {
+			videoId: VIDEO_ID,
 			playerVars: {
 				autoplay: 1,
 				loop: 1,
@@ -89,7 +91,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady() {
-	player.loadVideoById({ videoId: VIDEO_ID });
+	// player.loadVideoById({ videoId: VIDEO_ID });
 	duration = player.getDuration();
 	playbackInterval = setInterval(onTimeUpdate, 100);
 }
