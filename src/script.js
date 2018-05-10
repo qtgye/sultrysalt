@@ -69,7 +69,7 @@ function onYouTubeIframeAPIReady() {
 	player = new YT.Player('hero__video__player', {
 		videoId: VIDEO_ID,
 		playerVars: {
-			// autoplay: 1,
+			autoplay: 1,
 			loop: 1,
 			controls: 0,
 			enablejsapi: 1,
@@ -85,7 +85,6 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady() {
 	duration = player.getDuration();
 	playbackInterval = setInterval(onTimeUpdate, 100);
-	player.playVideo();
 }
 
 function onTimeUpdate () {
@@ -106,7 +105,7 @@ function onTimeUpdate () {
 }
 
 function activateItem( itemIndex ) {
-	if ( itemIndex === activeItem ) return;
+	if ( itemIndex === activeItem || !$titles ) return;
 
 	$titles.filter('.active')
 		// Remove active class
